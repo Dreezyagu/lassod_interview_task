@@ -1,5 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.lassod_interview_task">
+       <uses-permission 
+         android:name="android.permission.INTERNET"/>
    <application
         android:label="lassod_interview_task"
         android:icon="@mipmap/ic_launcher">
