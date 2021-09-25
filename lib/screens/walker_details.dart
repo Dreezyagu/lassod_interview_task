@@ -34,7 +34,7 @@ class _WalkerDetailsState extends State<WalkerDetails> {
                   )),
               Positioned(
                 bottom: 0,
-                height: context.height(.55),
+                height: context.height(.6),
                 child: Container(
                   width: context.width(),
                   decoration: BoxDecoration(
