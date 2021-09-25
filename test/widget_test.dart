@@ -7,24 +7,26 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
 import 'package:lassod_interview_task/main.dart';
+import 'package:lassod_interview_task/widgets/buttons.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp());
+  group("Widget tests", () {
+    testWidgets('Sign up button test', (WidgetTester tester) async {
+      // Build our app and trigger a frame.
+      await tester.pumpWidget(MyApp());
+      final button = find.byType(Button);
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+// checking if the custom Button widget exists in this project. Expecting at least one.
+      expect(button, findsOneWidget);
+    });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    testWidgets('ClipRRect test', (WidgetTester tester) async {
+      // Build our app and trigger a frame.
+      await tester.pumpWidget(MyApp());
+      final clipRRect = find.byType(ClipRRect);
+// checking if the ClipRRect widget exists in this project. Expecting none.
+      expect(clipRRect, findsNothing);
+    });
   });
 }

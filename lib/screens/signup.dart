@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lassod_interview_task/cubits/signup/signup_cubit.dart';
 import 'package:lassod_interview_task/utils/constants.dart';
 import 'package:lassod_interview_task/utils/extensions.dart';
 import 'package:lassod_interview_task/widgets/buttons.dart';
 import 'package:lassod_interview_task/widgets/spaces.dart';
+import 'package:lassod_interview_task/widgets/textspace.dart';
 
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
@@ -15,7 +18,7 @@ class _SignupState extends State<Signup> {
   final TextEditingController fullname = TextEditingController();
   final TextEditingController email = TextEditingController();
   final TextEditingController password = TextEditingController();
-
+  bool loading = false;
   bool toggle = true;
   @override
   Widget build(BuildContext context) {
@@ -64,6 +67,7 @@ class _SignupState extends State<Signup> {
                 Textspace(
                   title: "Password",
                   obscure: toggle,
+                  key: const Key("signUpButton"),
                   icon: IconButton(
                       onPressed: () {
                         setState(() {
@@ -80,51 +84,53 @@ class _SignupState extends State<Signup> {
           Hspace(context.height(.05)),
           Button(
               title: "Sign Up",
+              loading: loading,
               function: () {
+                BlocProvider.of<SignupCubit>(context).signUp(
+                    fullname: fullname.text,
+                    password: password.text,
+                    email: email.text);
+              }),
+
+          Hspace(context.height(.15)),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: context.width(.1)),
+            child: RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                    style: TextStyle(
+                        color: const Color(0xff7A7A7A),
+                        fontWeight: FontWeight.w500,
+                        fontSize: context.width(.035)),
+                    children: [
+                      const TextSpan(text: "By signing in, I agree with "),
+                      TextSpan(
+                        text: "Terms of Use and Privacy Policy",
+                        style: TextStyle(
+                            color: darkGrey,
+                            fontWeight: FontWeight.w500,
+                            fontSize: context.width(.035)),
+                      )
+                    ])),
+          ),
+          //listens to the SignUpCubit and performs actions based on the current state.
+          BlocListener<SignupCubit, SignupState>(
+            listener: (context, state) {
+              if (state is SignupLoading) {
+                setState(() {
+                  loading = true;
+                });
+              } else if (state is SignupLoaded || state is SignupError) {
+                setState(() {
+                  loading = false;
+                });
                 Navigator.pushNamed(context, "/home");
-              })
+              }
+            },
+            child: Container(),
+          ),
         ],
       ),
-    );
-  }
-}
-
-// textformfield widget used on the signup page.
-class Textspace extends StatelessWidget {
-  final String title;
-  final TextEditingController controller;
-  final Widget icon;
-  final bool obscure;
-
-  const Textspace(
-      {Key? key,
-      this.obscure = false,
-      required this.title,
-      required this.controller,
-      required this.icon})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      style: TextStyle(
-          color: darkGrey,
-          fontWeight: FontWeight.w500,
-          fontSize: context.width(.04)),
-      controller: controller,
-      obscureText: obscure,
-      decoration: InputDecoration(
-          filled: true,
-          fillColor: const Color(0xffF0F0F0),
-          contentPadding: EdgeInsets.all(context.width(.04)),
-          labelText: title,
-          suffixIcon: icon,
-          labelStyle: const TextStyle(color: lightGrey),
-          border: UnderlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(
-                context.width(.05),
-              ))),
     );
   }
 }

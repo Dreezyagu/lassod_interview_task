@@ -23,10 +23,16 @@ class _HomepageState extends State<Homepage> {
           children: [
             const HomeHeader(),
             Hspace(context.height(.01)),
-            const LocationSelector(),
+            const LocationSelector(
+              icon: Icon(
+                Icons.location_on_outlined,
+                color: Color(0xffA1A1A1),
+              ),
+              title: "  Kyiv, Ukraine",
+            ),
             Hspace(context.height(.03)),
             const HorizontalListView("Near you"),
-            const Divider(),
+            const Divider(thickness: 1),
             Hspace(context.height(.015)),
             const HorizontalListView("Suggested"),
           ],
@@ -36,10 +42,18 @@ class _HomepageState extends State<Homepage> {
   }
 }
 
+
+
+
+
+
+// location selector widget under the page header
 class LocationSelector extends StatelessWidget {
-  const LocationSelector({
-    Key? key,
-  }) : super(key: key);
+  final String title;
+  final Widget icon;
+
+  const LocationSelector({Key? key, required this.title, required this.icon})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -56,11 +70,8 @@ class LocationSelector extends StatelessWidget {
         children: [
           Row(
             children: [
-              const Icon(
-                Icons.location_on_outlined,
-                color: Color(0xffA1A1A1),
-              ),
-              Text("Kyiv, Ukraine",
+              icon,
+              Text(title,
                   style: TextStyle(
                       color: const Color(0xffA1A1A1),
                       fontWeight: FontWeight.w400,
@@ -68,7 +79,7 @@ class LocationSelector extends StatelessWidget {
             ],
           ),
           const Icon(
-            Icons.location_on_outlined,
+            Icons.sort,
             color: Color(0xffA1A1A1),
           ),
         ],
@@ -77,6 +88,10 @@ class LocationSelector extends StatelessWidget {
   }
 }
 
+
+
+
+// horizontal listview containing few details about the dog walkers neaar you
 class HorizontalListView extends StatelessWidget {
   final String title;
 
@@ -100,7 +115,7 @@ class HorizontalListView extends StatelessWidget {
                     color: darkGrey,
                     decoration: TextDecoration.underline,
                     fontWeight: FontWeight.w400,
-                    fontSize: context.width(.045))),
+                    fontSize: context.width(.04))),
           ],
         ),
         Hspace(context.height(.02)),
@@ -185,6 +200,10 @@ class HorizontalListView extends StatelessWidget {
   }
 }
 
+
+
+
+// header of page
 class HomeHeader extends StatelessWidget {
   const HomeHeader({
     Key? key,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lassod_interview_task/screens/chats.dart';
 import 'package:lassod_interview_task/screens/homepage.dart';
 import 'package:lassod_interview_task/utils/constants.dart';
 
@@ -16,7 +17,7 @@ class _HomeState extends State<Home> {
   final List<Widget> pages = [
     const Homepage(),
     Container(),
-    Container(),
+    const Chats(),
     Container()
   ];
   @override
@@ -30,7 +31,7 @@ class _HomeState extends State<Home> {
           label: "Home"),
       BottomNavigationBarItem(
           icon: Image.asset(
-            "assets/icons/home.png",
+            "assets/icons/moments.png",
             color: currentIndex == 1 ? darkGrey : lightGrey,
           ),
           label: "Moments"),
@@ -48,6 +49,11 @@ class _HomeState extends State<Home> {
           label: "Profile")
     ];
     return Scaffold(
+      appBar: currentIndex == 2
+          ? const ChatAppbar(
+              preferredSize: Size.fromHeight(kToolbarHeight),
+            )
+          : null,
       body: WillPopScope(
           onWillPop: () {
             throw "";

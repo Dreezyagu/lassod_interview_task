@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lassod_interview_task/cubits/signup/signup_cubit.dart';
 
 import 'utils/constants.dart';
 import 'utils/route_generator.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(BlocProvider(
+    create: (context) => SignupCubit(),
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {

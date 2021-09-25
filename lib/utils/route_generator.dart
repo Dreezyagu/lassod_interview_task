@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lassod_interview_task/screens/home.dart';
+import 'package:lassod_interview_task/screens/messages.dart';
 import 'package:lassod_interview_task/screens/onboarding.dart';
 import 'package:lassod_interview_task/screens/signup.dart';
 import 'package:lassod_interview_task/screens/walker_details.dart';
@@ -16,6 +17,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const Home());
       case "/walker_details":
         return MaterialPageRoute(builder: (_) => const WalkerDetails());
+      case "/messages":
+        return MaterialPageRoute(builder: (_) => const Messages());
 
       default:
         return MaterialPageRoute(builder: (_) {
