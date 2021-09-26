@@ -16,36 +16,33 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-            horizontal: context.width(.04), vertical: context.height(.02)),
-        child: Column(
-          children: [
-            const HomeHeader(),
-            Hspace(context.height(.01)),
-            const LocationSelector(
-              icon: Icon(
-                Icons.location_on_outlined,
-                color: Color(0xffA1A1A1),
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+              horizontal: context.width(.04), vertical: context.height(.02)),
+          child: Column(
+            children: [
+              const HomeHeader(),
+              Hspace(context.height(.01)),
+              const LocationSelector(
+                icon: Icon(
+                  Icons.location_on_outlined,
+                  color: Color(0xffA1A1A1),
+                ),
+                title: "  Kyiv, Ukraine",
               ),
-              title: "  Kyiv, Ukraine",
-            ),
-            Hspace(context.height(.03)),
-            const HorizontalListView("Near you"),
-            const Divider(thickness: 1),
-            Hspace(context.height(.015)),
-            const HorizontalListView("Suggested"),
-          ],
+              Hspace(context.height(.03)),
+              const HorizontalListView("Near you"),
+              const Divider(thickness: 1),
+              Hspace(context.height(.015)),
+              const HorizontalListView("Suggested"),
+            ],
+          ),
         ),
       ),
     );
   }
 }
-
-
-
-
-
 
 // location selector widget under the page header
 class LocationSelector extends StatelessWidget {
@@ -87,9 +84,6 @@ class LocationSelector extends StatelessWidget {
     );
   }
 }
-
-
-
 
 // horizontal listview containing few details about the dog walkers neaar you
 class HorizontalListView extends StatelessWidget {
@@ -199,9 +193,6 @@ class HorizontalListView extends StatelessWidget {
     );
   }
 }
-
-
-
 
 // header of page
 class HomeHeader extends StatelessWidget {

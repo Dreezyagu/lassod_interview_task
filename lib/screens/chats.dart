@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:lassod_interview_task/screens/homepage.dart';
-import 'package:lassod_interview_task/screens/walker_details.dart';
 import 'package:lassod_interview_task/utils/constants.dart';
 import 'package:lassod_interview_task/utils/extensions.dart';
 import 'package:lassod_interview_task/widgets/spaces.dart';
