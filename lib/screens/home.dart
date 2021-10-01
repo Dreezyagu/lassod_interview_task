@@ -13,7 +13,6 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int currentIndex = 0;
 
-  final List bottomNavBarTitle = ["Home", "Moments", "Chat", "Profile"];
   final List<Widget> pages = [
     const Homepage(),
     Container(),
